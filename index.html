@@ -56,46 +56,50 @@
 
   /* ── HERO ── */
   .hero {
-    background: linear-gradient(160deg, #eef8e8 60%, #d5f0c8 100%);
     padding: 60px 48px 0;
     display: grid;
     grid-template-columns: 1fr;
     align-items: end;
     gap: 24px;
-    min-height: 560px;
+    min-height: 700px;
     position: relative;
     overflow: hidden;
   }
-  .hero-bg-blob {
-    position: absolute; top: -40px; right: 120px;
-    width: 420px; height: 420px;
-    background: #6ab04c;
-    border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%;
-    opacity: .85;
+  .hero-slider {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 0;
   }
-  .hero-dots {
-    position:absolute; bottom:80px; left:40px;
-    display:grid; grid-template-columns:repeat(3,1fr); gap:6px;
+  .hero-slider .slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
   }
-  .hero-dots span {
-    width:8px; height:8px; border-radius:50%;
-    background:var(--purple); opacity:.5;
-    display:block;
+  .hero-slider .slide.active { opacity: 1; }
+  .hero-slider::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
   }
   .hero-left { z-index: 2; padding-bottom: 60px; text-align: center; width: 100%; }
   .hero-brand-badge {
     display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;
   }
   .hero-brand-badge .badge-icon { font-size:36px; }
-  .hero-brand-badge .badge-text .top { font-family:'Dancing Script',cursive; font-size:30px; color:var(--purple); line-height:1; }
-  .hero-brand-badge .badge-text .bot { font-size:13px; color:var(--green); font-weight:800; letter-spacing:2px; }
+  .hero-brand-badge .badge-text .top { font-family:'Dancing Script',cursive; font-size:30px; color:#fff; line-height:1; }
+  .hero-brand-badge .badge-text .bot { font-size:13px; color:var(--green-light); font-weight:800; letter-spacing:2px; }
   .hero h1 {
-    font-size: 52px; font-weight: 900; line-height: 1.1; color: var(--purple);
+    font-size: 52px; font-weight: 900; line-height: 1.1; color: #fff;
     margin-bottom: 6px;
   }
   .hero h1 span { color: var(--green-light); }
-  .hero p { font-size:16px; color:var(--text-mid); margin: 14px 0 32px; max-width:380px; margin-left:auto; margin-right:auto; }
+  .hero p { font-size:16px; color:rgba(255,255,255,.9); margin: 14px 0 32px; max-width:380px; margin-left:auto; margin-right:auto; }
   .btn-primary {
     display:inline-flex; align-items:center; gap:10px;
     background:var(--purple); color:#fff;
@@ -103,6 +107,7 @@
     font-size:15px; font-weight:800; text-decoration:none; letter-spacing:.5px;
     transition: transform .2s, box-shadow .2s;
     box-shadow: 0 4px 20px rgba(91,45,142,.35);
+    margin-top: 200px;
   }
   .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(91,45,142,.45); }
   .btn-primary .leaf { font-size:18px; }
@@ -347,17 +352,16 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg-blob"></div>
-  <div class="hero-dots">
-    <span></span><span></span><span></span>
-    <span></span><span></span><span></span>
-    <span></span><span></span><span></span>
+  <div class="hero-slider" id="heroSlider">
+    <div class="slide active" style="background-image:url('truck1.JPG');"></div>
+    <div class="slide" style="background-image:url('truck2.JPG');"></div>
+    <div class="slide" style="background-image:url('truck3.JPG');"></div>
   </div>
   <div class="hero-left">
     
-    <img src="data:image/png;base64,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" alt="Queen P Smoothies" style="height:90px;width:auto;margin-bottom:10px;display:block;">
-    <h1>Feed Your<br><span>Lifestyle👑</span></h1>
-    <p>Delicious smoothies made with real fruits, natural ingredients, and good energy.</p>
+   
+    <h1>Feed Your<br><span>Lifestyle</span></h1>
+    
     <a href="menu (1).html" class="btn-primary"><span class="leaf">🌿</span> VIEW OUR MENU</a>
   </div>
   <div class="hero-right">
@@ -371,7 +375,7 @@
     <div class="title-lines">
       <h2>Popular Smoothies<span class="leaf">🌿</span></h2>
     </div>
-    <p>Something for every mood and every you.</p>
+    <p>Delicious smoothies made with real fruits, natural ingredients, and good energy.</p>
   </div>
 
   <div class="menu-grid">
@@ -385,11 +389,11 @@
         <ellipse cx="45" cy="29" rx="34" ry="8" fill="#fef9c3"/>
         <text x="45" y="76" text-anchor="middle" fill="white" font-family="'Dancing Script',cursive" font-size="10" font-weight="bold">Queen P</text>
         <text x="45" y="88" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="'Nunito',sans-serif" font-size="6" letter-spacing="1">Smoothies</text>
-        <text x="28" y="60" font-size="12">🥭</text><text x="50" y="58" font-size="10">🍍</text>
+        <text x="28" y="60" font-size="12">🥭</text><text x="50" y="58" font-size="10">🥥</text>
         <defs><linearGradient id="mangG" x1="0" y1="0" x2="90" y2="130" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#d97706"/></linearGradient></defs>
       </svg>
       <div class="menu-info">
-        <h3>Tropical Mango</h3>
+        <h3>Gleeful</h3>
         <p>Mango, orange juice, banana, and coconut milk.</p>
         <div class="menu-emojis">🥭🍌🥥</div>
         <div class="menu-price">$10.00</div>
@@ -404,13 +408,13 @@
         <ellipse cx="45" cy="29" rx="34" ry="8" fill="#dcfce7"/>
         <text x="45" y="76" text-anchor="middle" fill="white" font-family="'Dancing Script',cursive" font-size="10" font-weight="bold">Queen P</text>
         <text x="45" y="88" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="'Nunito',sans-serif" font-size="6" letter-spacing="1">Smoothies</text>
-        <text x="28" y="60" font-size="12">🥬</text><text x="50" y="58" font-size="10">🍏</text>
+        <text x="28" y="60" font-size="12">🥬</text><text x="50" y="58" font-size="10">🍍</text>
         <defs><linearGradient id="greenG" x1="0" y1="0" x2="90" y2="130" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#15803d"/></linearGradient></defs>
       </svg>
       <div class="menu-info">
         <h3>Slime</h3>
         <p>Spinach, almond milk, pineapple, and mango.</p>
-        <div class="menu-emojis">🥬🍍</div>
+        <div class="menu-emojis">🥬🥭🍍</div>
         <div class="menu-price">$10.00</div>
       </div>
     </div>
@@ -427,13 +431,13 @@
         <ellipse cx="45" cy="29" rx="34" ry="8" fill="#fce7f3"/>
         <text x="45" y="76" text-anchor="middle" fill="white" font-family="'Dancing Script',cursive" font-size="10" font-weight="bold">Queen P</text>
         <text x="45" y="88" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="'Nunito',sans-serif" font-size="6" letter-spacing="1">Smoothies</text>
-        <text x="26" y="60" font-size="12">🐉</text><text x="50" y="58" font-size="10">🥭</text>
+        <text x="26" y="60" font-size="12">🐉</text><text x="50" y="58" font-size="10">🍍</text>
         <defs><linearGradient id="dragonG" x1="0" y1="0" x2="90" y2="130" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e91e8c"/><stop offset="100%" stop-color="#9d174d"/></linearGradient></defs>
       </svg>
       <div class="menu-info">
         <h3>Sweet tooth</h3>
         <p>Passion fruit, banana, pineapple, and Pomegranate.</p>
-        <div class="menu-emojis">🐉🍍</div>
+        <div class="menu-emojis">🐉🍍🍌</div>
         <div class="menu-price">$10.00</div>
       </div>
     </div>
@@ -479,7 +483,7 @@
     <img src="qp1.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
     <img src="qp6.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
     <img src="qp2.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
-    <img src="qp4.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
+    <img src="qp4.jpg" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
   </div>
   <div class="order" style="text-align:center; padding:20px 0;">
     <h2>Order Today</h2>
@@ -491,10 +495,10 @@
     <a href="tel:1234567890" class="btn-call">📞 &nbsp;CALL TO ORDER</a>
   </div>
   <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:16px; align-items:start; justify-items:center; margin-top:16px;">
-    <img src="qp5.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
-    <img src="qp7.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
+    <img src="qp5.jpg" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
+    <img src="qp7.jpg" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
     <img src="qp8.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
-    <img src="qp3.JPG" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
+    <img src="qp3.jpg" alt="Queen P Smoothies" style="width:100%; max-width:200px; height:auto; object-fit:cover; border-radius:14px; box-shadow:0 4px 16px rgba(91,45,142,.15);">
   </div>
 </section>
 
@@ -515,5 +519,15 @@
   </div>
 </footer>
 
+<script>
+  // Hero slider
+  const slides = document.querySelectorAll('#heroSlider .slide');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 4000);
+</script>
 </body>
 </html>
