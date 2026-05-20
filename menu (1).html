@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu – Queen P Smoothies</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #5b2d8e;
+    --purple-light: #7b3fb5;
+    --green: #6ab04c;
+    --green-light: #8dc63f;
+    --bg-lavender: #f0eaf8;
+    --text-dark: #222;
+    --text-mid: #555;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-dark);
+    background: var(--bg-lavender);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--purple);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .header-brand .brand { font-family: 'Dancing Script', cursive; font-size: 24px; color: #fff; }
+  .header-brand .sub { font-size: 11px; color: var(--green-light); font-weight: 700; letter-spacing: 1px; }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.15); color: #fff;
+    padding: 10px 22px; border-radius: 50px;
+    font-size: 14px; font-weight: 800; text-decoration: none;
+    transition: background .2s;
+  }
+  .back-btn:hover { background: rgba(255,255,255,.28); }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 48px;
+  }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .title-lines {
+    display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 10px;
+  }
+  .title-lines::before, .title-lines::after {
+    content: ''; flex: 0 0 60px; height: 2px; background: var(--green);
+  }
+  .page-title h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 52px;
+    color: var(--purple);
+    display: inline-flex; align-items: center; gap: 14px;
+  }
+  .page-title p {
+    color: var(--text-mid); font-size: 15px; margin-top: 8px;
+  }
+
+  /* ── MENU IMAGE ── */
+  .menu-img-wrap {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(91,45,142,.18);
+    padding: 24px;
+    text-align: center;
+  }
+  .menu-img-wrap img {
+    width: 100%;
+    border-radius: 14px;
+    display: block;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--purple); color: #fff;
+    padding: 22px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 80px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo .brand { font-family: 'Dancing Script', cursive; font-size: 20px; }
+  .footer-logo .sub { font-size: 11px; color: var(--green-light); font-weight: 700; }
+  footer p { font-size: 13px; opacity: .75; }
+
+  @media(max-width: 900px) {
+    header { padding: 16px 24px; }
+    main { padding: 40px 24px; }
+    footer { flex-direction: column; gap: 14px; text-align: center; }
+  }
+  @media(max-width: 600px) {
+    header { padding: 12px 16px; }
+    .header-brand .brand { font-size: 20px; }
+    .back-btn { font-size: 12px; padding: 8px 14px; }
+    main { padding: 24px 16px; }
+    .page-title h1 { font-size: 36px; }
+    .menu-img-wrap { padding: 12px; }
+    footer { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="queen-p-smoothies(11).html" class="header-brand">
+    <span style="font-size:28px;">🥤</span>
+    <div>
+      <div class="brand">Queen P</div>
+      <div class="sub">Smoothies</div>
+    </div>
+  </a>
+  <a href="queen-p-smoothies(11).html" class="back-btn">← Back to Home</a>
+</header>
+
+<main>
+  <div class="page-title">
+    <div class="title-lines">
+      <h1>Our Menu <span>🌿</span></h1>
+    </div>
+    <p>Fresh. Healthy. Made for you.</p>
+  </div>
+
+  <div class="menu-img-wrap">
+    <!-- REPLACE menu-photo.jpg with your actual menu image filename -->
+    <img src="menu.JPG" alt="Queen P Smoothies Menu">
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">
+    <span style="font-size:28px;">🥤</span>
+    <div>
+      <div class="brand">Queen P</div>
+      <div class="sub">Smoothies</div>
+    </div>
+  </div>
+  <p>© 2026 Queen P Smoothies. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
